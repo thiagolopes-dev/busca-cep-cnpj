@@ -1,0 +1,21 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img routerLink="/" width="40" alt="Angular Logo" src="/assets/icons/angular.svg" />
+  <span>
+    <h2>Busca CEP e CNPJ</h2>
+  </span>
+</div>
+
+<main>
+
+  <div class="grid">
+    <div class="col-6">
+      <p-button styleClass="w-full" label="Busca CEP" routerLink="/cep"></p-button>
+    </div>
+    <div class="col-6">
+      <p-button styleClass="w-full" label="Busca CNPJ" routerLink="/cnpj"></p-button>
+    </div>
+</div>
+</main>
+
+<router-outlet></router-outlet>

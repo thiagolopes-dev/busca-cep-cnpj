@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+html {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+main{
+  margin-top: 80px;
+}
+
+h2{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+}
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+}
+.p-inputtext {
+  margin: 0;
+  width: 100%;
+  border-radius: 1.25rem;
+}
+.p-button {
+  border-radius: 1.25rem;
+}
+.buttonBuscar {
+  width: 50%;
+}
+
+@media screen and (max-width: 40rem) {
+
+  .buttonBuscar {
+    width: 100%;
+  }
+ }
