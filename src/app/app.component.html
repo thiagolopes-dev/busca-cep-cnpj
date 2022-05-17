@@ -13,9 +13,11 @@
       <p-button styleClass="w-full" label="Busca CEP" routerLink="/cep"></p-button>
     </div>
     <div class="col-6">
-      <p-button styleClass="w-full" label="Busca CNPJ" routerLink="/cnpj"></p-button>
+      <p-button styleClass="p-button-secondary w-full" label="Busca CNPJ" routerLink="/cnpj"></p-button>
     </div>
 </div>
 </main>
 
 <router-outlet></router-outlet>
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "default" color = "#fff" type = "ball-atom" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

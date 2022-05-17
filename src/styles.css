@@ -32,6 +32,7 @@ h2{
 .p-inputtext {
   margin: 0;
   width: 100%;
+  font-weight: 900;
   border-radius: 1.25rem;
 }
 .p-button {
@@ -46,4 +47,8 @@ h2{
   .buttonBuscar {
     width: 100%;
   }
+ }
+
+ .p-float-label label {
+   font-weight: 900;
  }
