@@ -4,8 +4,6 @@ import {CardModule} from 'primeng/card';
 import {InputTextModule} from 'primeng/inputtext';
 import {TooltipModule} from 'primeng/tooltip';
 import {InputMaskModule} from 'primeng/inputmask';
-import {ToastModule} from 'primeng/toast';
-
 
 @NgModule({
 
@@ -14,8 +12,8 @@ import {ToastModule} from 'primeng/toast';
       CardModule,
       InputTextModule,
       TooltipModule,
-      InputMaskModule,
-      ToastModule
+      InputMaskModule
+      
   ]
 })
 export class PrimengModule { }

@@ -2,14 +2,15 @@
     <div class="grid mt-3">
         <div class="field col-12 md:col-4">
             <span class="p-float-label">
-                <input type="tel" (blur)="consultaCEP($event.target.value, form)" id="cep" name="cep" pInputText minlength="8"  maxlength="8" required>
+                <input type="tel" (blur)="consultaCEP($event.target.value, form)" id="cep" name="cep" pInputText
+                    ngModel minlength="8"  maxlength="8" required>
                 <label for="cep">Cep</label>
             </span>
         </div>
 
         <div class="field col-12 md:col-4">
             <span class="p-float-label">
-                <input type="text" id="logradouro" name="logradouro" pInputText ngModel disabled="true">
+                <input type="text" id="logradouro" name="logradouro" pInputText ngModel  disabled="true">
                 <label for="logradouro">Logradouro</label>
             </span>
         </div>
@@ -34,7 +35,7 @@
                 <label for="uf">Estado</label>
             </span>
         </div>
+
+
     </div>
 </form>
-
-<p-toast position="bottom-center"></p-toast>
