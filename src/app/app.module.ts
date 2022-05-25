@@ -18,6 +18,8 @@ import { CnpjService } from './pages/cnpj/cnpj.service';
 import { PrimengModule } from './primeng.module';
 import { NgxViacepModule } from '@brunoc/ngx-viacep';
 import { ToastrModule } from 'ngx-toastr';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,12 @@ import { ToastrModule } from 'ngx-toastr';
     CnpjRountingModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-center'
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
   providers: [

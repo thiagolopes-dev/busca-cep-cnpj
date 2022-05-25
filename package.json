@@ -19,6 +19,7 @@
     "@angular/platform-browser": "13.3.0",
     "@angular/platform-browser-dynamic": "13.3.0",
     "@angular/router": "13.3.0",
+    "@angular/service-worker": "13.3.0",
     "@brunoc/ngx-viacep": "^3.3.7",
     "font-awesome": "4.7.0",
     "ngx-spinner": "^13.1.1",
