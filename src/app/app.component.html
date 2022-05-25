@@ -8,14 +8,24 @@
 
 <main>
 
-  <div class="grid">
+  <div class="grid justify-content-center mt-3">
+       
+    <div class="col-12 md:col-6 lg:col-3">
+      <p-button styleClass="w-full" label="Busca CEP" routerLink="/cep"></p-button>
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+      <p-button styleClass="p-button-secondary w-full" label="Busca CNPJ" routerLink="/cnpj"></p-button>
+    </div>
+    </div>
+
+  <!-- <div class="grid">
     <div class="col-6">
       <p-button styleClass="w-full" label="Busca CEP" routerLink="/cep"></p-button>
     </div>
     <div class="col-6">
       <p-button styleClass="p-button-secondary w-full" label="Busca CNPJ" routerLink="/cnpj"></p-button>
     </div>
-</div>
+</div> -->
 </main>
 
 <router-outlet></router-outlet>

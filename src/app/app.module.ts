@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -15,6 +16,8 @@ import { CnpjComponent } from './pages/cnpj/cnpj.component';
 import { CnpjRountingModule } from './pages/cnpj/cnpj.routing';
 import { CnpjService } from './pages/cnpj/cnpj.service';
 import { PrimengModule } from './primeng.module';
+import { NgxViacepModule } from '@brunoc/ngx-viacep';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -26,17 +29,22 @@ import { PrimengModule } from './primeng.module';
     BrowserModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    NgxViacepModule,
     CommonModule,
     AppRoutingModule,
     PrimengModule,
     HttpClientModule,
     FormsModule,
     CepRountingModule,
-    CnpjRountingModule
+    CnpjRountingModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-center'
+    }),
   ],
   providers: [
     CepService,
-    CnpjService
+    CnpjService,
+    MessageService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
