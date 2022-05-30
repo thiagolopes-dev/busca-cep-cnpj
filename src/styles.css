@@ -13,6 +13,7 @@ main{
 }
 
 h2{
+  text-align: center;
   font-family: 'Open Sans', sans-serif;
   font-size: 20px;
 }
@@ -35,9 +36,7 @@ h2{
   font-weight: 900;
   border-radius: 1.25rem;
 }
-.p-button {
-  border-radius: 1.25rem;
-}
+
 .buttonBuscar {
   width: 50%;
 }
@@ -52,3 +51,10 @@ h2{
  .p-float-label label {
    font-weight: 900;
  }
+ .buttonRounded{
+   border-radius: 1.25rem;
+ }
+
+ .pi-arrow-left:before {
+  color: #495057;
+}

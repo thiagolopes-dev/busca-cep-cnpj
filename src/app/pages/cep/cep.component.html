@@ -1,17 +1,17 @@
 <form #form="ngForm">
+    <i class="pi pi-arrow-left" style="font-size: 2rem" routerLink="/"></i>
     <div class="grid justify-content-center mt-3">
 
         <div class="col-12 md:col-6 lg:col-3">
             <span class="p-float-label">
                 <!--evento removido do input (blur)="consultaCEP($event.target.value, form) -->
-                <!-- <input type="tel" id="cep" name="cep" #cep="ngModel" [(ngModel)]="buscacep" pInputText minlength="8" maxlength="9" required> -->
-                <p-inputMask mask="99999-999" unmask="true" name="cep" #cep="ngModel" [(ngModel)]="buscacep"
-                    minlength="1" maxlength="9"></p-inputMask>
+                <!-- <input type="tel" id="cep" name="cep" #cep="ngModel" [(ngModel)]="buscacep" pInputText minlength="8" maxlength="8" required> -->
+                <p-inputMask mask="99999-999" name="cep" #cep="ngModel" [(ngModel)]="buscacep" unmask="true"></p-inputMask>
                 <label for="cep">Cep</label>
             </span>
         </div>
         <div class="col-12 md:col-6 lg:col-3">
-            <p-button styleClass="w-full" label="Buscar" (click)="consultaCEP(cep, form)"></p-button>
+            <p-button styleClass="w-full buttonRounded" label="Buscar" (click)="consultaCEP(cep, form)"></p-button>
         </div>
 
 

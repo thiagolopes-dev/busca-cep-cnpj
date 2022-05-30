@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,6 +10,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Busca de CNPJ';
 
-constructor( ) { }
+constructor(
+  private router: Router
+ ) { }
 
+hideButtons() {
+  return this.router.url !== '/cep' && this.router.url !== '/cnpj';
+}
 }
