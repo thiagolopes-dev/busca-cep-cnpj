@@ -1,20 +1,22 @@
 <form #form="ngForm">
     <div class="grid justify-content-center mt-3">
-       
-            <div class="col-12 md:col-6 lg:col-3">
-                <span class="p-float-label">
-                    <input type="tel" id="cep" name="cep" pInputText ngModel minlength="8" maxlength="8" (blur)="consultaCEP($event.target.value, form)" required>
-                    <label for="cep">Cep</label>
-                </span>
-            </div>
-            <!-- <div class="col-12 md:col-6 lg:col-3">
-                <p-button styleClass="w-full" name="cep" ngModel label="Buscar"
-                 (click)="consultaCEP(cep,form)"></p-button>
-            </div> -->
-       
+
+        <div class="col-12 md:col-6 lg:col-3">
+            <span class="p-float-label">
+                <!--evento removido do input (blur)="consultaCEP($event.target.value, form) -->
+                <!-- <input type="tel" id="cep" name="cep" #cep="ngModel" [(ngModel)]="buscacep" pInputText minlength="8" maxlength="9" required> -->
+                <p-inputMask mask="99999-999" unmask="true" name="cep" #cep="ngModel" [(ngModel)]="buscacep"
+                    minlength="1" maxlength="9"></p-inputMask>
+                <label for="cep">Cep</label>
+            </span>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <p-button styleClass="w-full" label="Buscar" (click)="consultaCEP(cep, form)"></p-button>
+        </div>
+
 
         <div class="grid mt-2" *ngIf="buscar">
-            <div class="col-12 md:col-6">
+            <div class="col-12 md:col-6 m-2">
                 <span class="p-float-label">
                     <input class="w-full" type="text" id="logradouro" name="logradouro" pInputText ngModel
                         disabled="true">
@@ -22,21 +24,21 @@
                 </span>
             </div>
 
-            <div class="col-12 md:col-6">
+            <!-- <div class="col-12 md:col-6 m-2">
                 <span class="p-float-label">
                     <input type="text" id="complemento" name="complemento" pInputText ngModel disabled="true">
                     <label for="complemento">Complemento</label>
                 </span>
-            </div>
+            </div> -->
 
-            <div class="col-12 md:col-6">
+            <div class="col-12 md:col-6 m-2">
                 <span class="p-float-label">
                     <input type="text" id="localidade" name="localidade" pInputText ngModel disabled="true">
-                    <label for="localidade">Localidade</label>
+                    <label for="localidade">Cidade</label>
                 </span>
             </div>
 
-            <div class="col-12 md:col-6">
+            <div class="col-12 md:col-6 m-2">
                 <span class="p-float-label">
                     <input type="text" id="uf" name="uf" pInputText ngModel disabled="true">
                     <label for="uf">Estado</label>

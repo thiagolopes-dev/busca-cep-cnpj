@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CEPError, CEPErrorCode, NgxViacepService } from '@brunoc/ngx-viacep';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -12,26 +13,26 @@ import { CepService } from './cep.service';
   styleUrls: ['./cep.component.css'],
 })
 export class CepComponent implements OnInit {
+
   buscar: boolean;
-  mycep: number;
+  buscacep: string;
 
   constructor(
     private cepService: CepService,
     private spinner: NgxSpinnerService,
     private viacep: NgxViacepService,
     private messageService: MessageService,
-    private toastr: ToastrService,
-    cepElement: ElementRef
-  ) { }
+    private toastr: ToastrService
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit() {}
 
   consultaCEP(cep, form) {
     this.resetFormCep(form);
     this.spinner.show();
     this.buscar = true;
     this.viacep
-      .buscarPorCep(cep)
+      .buscarPorCep(this.buscacep)
       .pipe(
         catchError((error: CEPError) => {
           switch (error.getCode()) {
@@ -83,13 +84,25 @@ export class CepComponent implements OnInit {
   }
 
   cepVazio() {
-    this.messageService.add({ severity: 'info', summary: 'Atenção', detail: 'Cep vazio!' });
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Atenção',
+      detail: 'Cep vazio!',
+    });
   }
   cepCurto() {
-    this.messageService.add({ severity: 'info', summary: 'Atenção', detail: 'Cep muito curto!' });
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Atenção',
+      detail: 'Cep muito curto!',
+    });
   }
   cepNaoEncontrado() {
-    this.messageService.add({ severity: 'error', summary: 'Atenção', detail: 'Cep não encontrado!' });
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Atenção',
+      detail: 'Cep não encontrado!',
+    });
   }
   // TODO toastr lib externa
   // cepCurto() {
