@@ -20,15 +20,17 @@ export class CnpjComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  consultaCNPJ(cnpj, form) {
-    this.buscar = true;
-    if (cnpj != null && cnpj !== '') {
+  consultaCNPJ(buscarcnpj, form) {
+    if (buscarcnpj != null && buscarcnpj !== '') {
       this.spinner.show();
       this.resetaCnpjForm(form);
       this.cnpjService.consultaCNPJ(this.buscarcnpj).subscribe({
         next: (dados) => {
-          this.populaCnpjForm(dados, form);
           this.spinner.hide();
+          this.buscar = true;
+          setTimeout(() => {
+            this.populaCnpjForm(dados, form);
+          }, 100);
         },
         error: (e) => {
           this.spinner.hide();
@@ -43,6 +45,7 @@ export class CnpjComponent implements OnInit {
       });
     } else {
       this.spinner.hide();
+      this.buscar = false;
     }
   }
   populaCnpjForm(dados, formulario) {

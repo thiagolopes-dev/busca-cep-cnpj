@@ -3,12 +3,13 @@
     <div class="grid justify-content-center mt-3">
 
         <div class="col-12 md:col-6 lg:col-3">
-            <span class="p-float-label">
+           
                 <!--evento removido do input (blur)="consultaCEP($event.target.value, form) -->
                 <!-- <input type="tel" id="cep" name="cep" #cep="ngModel" [(ngModel)]="buscacep" pInputText minlength="8" maxlength="8" required> -->
-                <p-inputMask mask="99999-999" name="cep" #cep="ngModel" [(ngModel)]="buscacep" unmask="true"></p-inputMask>
-                <label for="cep">Cep</label>
-            </span>
+
+                <h6>Cep</h6>
+                <p-inputMask mask="99999-999" name="cep" #cep="ngModel" [(ngModel)]="buscacep" unmask="true" placeholder="Digite o cep"></p-inputMask>
+              
         </div>
         <div class="col-12 md:col-6 lg:col-3">
             <p-button styleClass="w-full buttonRounded" label="Buscar" (click)="consultaCEP(cep, form)"></p-button>

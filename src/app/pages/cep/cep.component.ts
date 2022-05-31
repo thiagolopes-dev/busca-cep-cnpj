@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { CEPError, CEPErrorCode, NgxViacepService } from '@brunoc/ngx-viacep';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -13,7 +14,7 @@ import { CepService } from './cep.service';
   styleUrls: ['./cep.component.css'],
 })
 export class CepComponent implements OnInit {
-
+  @Input()titleHome = 'Consultando CEP';
   buscar: boolean;
   buscacep: string;
 
@@ -22,15 +23,17 @@ export class CepComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private viacep: NgxViacepService,
     private messageService: MessageService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private title: Title
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.title.setTitle('Buscando CEP');
+  }
 
   consultaCEP(cep, form) {
     this.resetFormCep(form);
     this.spinner.show();
-    this.buscar = true;
     this.viacep
       .buscarPorCep(this.buscacep)
       .pipe(
@@ -56,8 +59,11 @@ export class CepComponent implements OnInit {
         })
       )
       .subscribe((dados) => {
-        this.populaCEPForm(dados, form);
+        this.buscar = true;
         this.spinner.hide();
+        setTimeout(() => {
+          this.populaCEPForm(dados, form);
+        }, 100);
       });
   }
 
