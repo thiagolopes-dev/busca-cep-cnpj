@@ -1,69 +1,77 @@
 <form #form="ngForm">
-  <div class="grid mt-3">
-      <div class="field col-12 md:col-4">
-          <span class="p-float-label">
-              <input type="text" id="cnpj" name="cnpj" pInputText
-                  ngModel />
-              <label for="cnpj">Cnpj</label>
-          </span>
-      </div>
+    <i class="pi pi-arrow-left" style="font-size: 2rem" routerLink="/"></i>
+    <div class="grid justify-content-center mt-3">
 
-      <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="text" id="razao_social" name="razao_social" pInputText ngModel />
-            <label for="razao_social">Razão Social</label>
-        </span>
+        <div class="col-12 md:col-6 lg:col-3">
+            <span class="p-float-label">
+                <p-inputMask mask="99.999.999/9999-99" unmask="true" name="cnpj" #cnpj="ngModel" [(ngModel)]="buscarcnpj">
+                </p-inputMask>
+                <label for="cep">Cnpj</label>
+            </span>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <p-button styleClass="w-full buttonRounded" label="Buscar" (click)="consultaCNPJ(cnpj, form)"></p-button>
+        </div>
+
+        <div class="grid mt-2" *ngIf="buscar">
+            <div class="col-12 md:col-6 m-2">
+                <span class="p-float-label">
+                    <input class="w-full" type="text" id="razao_social" name="razao_social" pInputText ngModel disabled="true">
+                    <label for="razao">Razão Social</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-6 m-2">
+                <span class="p-float-label">
+                    <input type="text" id="fantasia" name="nome_fantasia" pInputText ngModel disabled="true">
+                    <label for="fantasia">Nome Fantasia</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-6 m-2">
+                <span class="p-float-label">
+                    <input class="w-full" type="text" id="logradouro" name="logradouro" pInputText ngModel
+                        disabled="true">
+                    <label for="logradouro">Logradouro</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-6 m-2">
+                <span class="p-float-label">
+                    <input class="w-full" type="text" id="numero" name="numero" pInputText ngModel disabled="true">
+                    <label for="numero">Número</label>
+                </span>
+            </div>
+
+            <!-- <div class="col-12 md:col-6 m-2">
+                <span class="p-float-label">
+                    <input type="text" id="complemento" name="complemento" pInputText ngModel disabled="true">
+                    <label for="complemento">Complemento</label>
+                </span>
+            </div> -->
+
+            <div class="col-12 md:col-6 m-2">
+                <span class="p-float-label">
+                    <input type="text" id="municipio" name="municipio" pInputText ngModel disabled="true">
+                    <label for="municipio">Municipio</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-6 m-2">
+                <span class="p-float-label">
+                    <input type="text" id="uf" name="uf" pInputText ngModel disabled="true">
+                    <label for="uf">Estado</label>
+                </span>
+            </div>
+
+            <div class="col-12 md:col-6 m-2">
+                <span class="p-float-label">
+                    <input type="text" id="telefone" name="ddd_telefone_1" pInputText ngModel disabled="true">
+                    <label for="telefone">Telefone</label>
+                </span>
+            </div>
+        </div>
     </div>
-
-    <div class="field col-12 md:col-4">
-      <span class="p-float-label">
-          <input type="text" id="nome_fantasia" name="nome_fantasia" pInputText ngModel />
-          <label for="nome_fantasia">Nome Fantasia</label>
-      </span>
-  </div>
-
-      <div class="field col-12 md:col-4">
-          <span class="p-float-label">
-              <input type="text" id="logradouro" name="logradouro" pInputText ngModel />
-              <label for="logradouro">Logradouro</label>
-          </span>
-      </div>
-
-      <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="text" id="numero" name="numero" pInputText ngModel />
-            <label for="numero">Número</label>
-        </span>
-    </div>
-
-      <div class="field col-12 md:col-4">
-          <span class="p-float-label">
-              <input type="text" id="complemento" name="complemento" pInputText ngModel />
-              <label for="complemento">Complemento</label>
-          </span>
-      </div>
-
-      <div class="field col-12 md:col-4">
-          <span class="p-float-label">
-              <input type="text" id="municipio" name="municipio" pInputText ngModel />
-              <label for="municipio">Município</label>
-          </span>
-      </div>
-
-      <div class="field col-12 md:col-4">
-          <span class="p-float-label">
-              <input type="text" id="uf" name="uf" pInputText ngModel />
-              <label for="uf">Estado</label>
-          </span>
-      </div>
-
-      <div class="field col-12 md:col-4">
-        <span class="p-float-label">
-            <input type="text" id="ddd_telefone_1" name="ddd_telefone_1" pInputText ngModel />
-            <label for="ddd_telefone_1">Telefone</label>
-        </span>
-    </div>
-
-
-  </div>
 </form>
+
+<p-toast position="top-right"></p-toast>
