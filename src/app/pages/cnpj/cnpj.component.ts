@@ -35,7 +35,6 @@ export class CnpjComponent implements OnInit {
         error: (e) => {
           this.spinner.hide();
           this.buscar = false;
-          console.log('entrou no erro');
           this.messageService.add({
             severity: 'warn',
             summary: 'Atenção',
