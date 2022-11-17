@@ -1,16 +1,19 @@
+<p align="center">
+  <a href="http://python.org" target="blank"><img src="https://angular.io/assets/images/logos/angular/angular.svg" width="200" alt="Angular Logo" /></a>
+</p>
 
-# Busca CNPJ App Angular
+Angular é uma plataforma de aplicações web de código-fonte aberto e front-end baseado em TypeScript liderado pela Equipe Angular do Google e por uma comunidade de indivíduos e corporações.
+## 
+Angular moderna web plataforma developer
 
-Introdução Angular App
+## Funcionalidade
 
-#Consumindo API ViaCep e populando inputs do form.
+- Consumindo dados da Api Cep e Cnpj do Brasil API
+- Pwa
+- Service Workers
+
 
 ## Autores
 
-- [@thiagoolopess](https://instagram.com/thiagoolopess)
-
-
-## Usado por
-
-Projeto realizado em aula com alunos da Universidade Unopar Arapongas
+- [@thiagolopes.dev](https://www.instagram.com/thiagolopes.dev/)
 
