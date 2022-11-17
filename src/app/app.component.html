@@ -1,29 +1,26 @@
-<!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <img routerLink="/" width="40" alt="Logo App" src="/assets/icons/icon-512x512.png" width="50px" />
-  <span>
-    <h2>{{title}}</h2>
-  </span>
+  <img class="ml-3" routerLink="/" src="assets/icons/icon-72x72.png" alt="Busca Cep" width="50px">
+  <span class="ml-3 colortitle">{{title}}</span>
 </div>
-
 <main>
-
   <div *ngIf="hideButtons()" class="grid justify-content-center mt-3">
-    <div class="col-12 md:col-6 lg:col-3">
-      <button pButton pRipple type="button" label="Help"
-        class="w-full h-11rem buttonRounded p-button-rounded p-button-help" routerLink="/cep"
-        label="CONSULTAR CEP"></button>
-    </div>
-    <div class="col-12 md:col-6 lg:col-3">
-      <button pButton pRipple type="button" label="Warning"
-        class="p-button-rounded p-button-warning w-full h-11rem buttonRounded" label="CONSULTAR CNPJ"
-        routerLink="/cnpj"></button>
+    <div class="grid col-12 md:col-6 lg:col-6 xl:col-12">
+      <div class="col-12 md:col-6 lg:col-6">
+        <button pButton pRipple type="button" label="CEP"
+          class="h-15rem p-button-rounded p-button-help w-full sizeButtonLabel" routerLink="/cep"></button>
+      </div>
+      <div class="col-12 md:col-6 lg:col-6">
+        <button pButton pRipple type="button" label="CNPJ"
+          class="h-15rem p-button-rounded p-button-warning w-full sizeButtonLabel" routerLink="/cnpj"></button>
+      </div>
     </div>
   </div>
 </main>
 
 <router-outlet></router-outlet>
 
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="default" color="#fff" type="ball-atom" [fullScreen]="true">
-  <p style="color: white"> Loading... </p>
+<p-toast></p-toast>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fussion" [fullScreen]="true">
+  <p style="color: white"> Carregando... </p>
 </ngx-spinner>

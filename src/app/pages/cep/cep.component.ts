@@ -1,11 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { CEPError, CEPErrorCode, NgxViacepService } from '@brunoc/ngx-viacep';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
-import { catchError, EMPTY } from 'rxjs';
 import { CepService } from './cep.service';
 
 @Component({
@@ -14,104 +11,63 @@ import { CepService } from './cep.service';
   styleUrls: ['./cep.component.css'],
 })
 export class CepComponent implements OnInit {
-  @Input()titleHome = 'Consultando CEP';
-  buscar: boolean;
-  buscacep: string;
+  @Input() titleHome = 'Consultando CEP';
+  buscacep: string = '';
+  buscar: boolean = false;
 
   constructor(
     private cepService: CepService,
-    private spinner: NgxSpinnerService,
-    private viacep: NgxViacepService,
     private messageService: MessageService,
-    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
     private title: Title
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.title.setTitle('Buscando CEP');
   }
 
-  consultaCEP(cep, form) {
-    this.resetFormCep(form);
-    this.spinner.show();
-    this.viacep
-      .buscarPorCep(this.buscacep)
-      .pipe(
-        catchError((error: CEPError) => {
-          switch (error.getCode()) {
-            case CEPErrorCode.CEP_VAZIO:
-              // this.cepVazio();
-              this.buscar = false;
-              this.spinner.hide();
-              break;
-            case CEPErrorCode.CEP_NAO_ENCONTRADO:
-              this.cepNaoEncontrado();
-              this.buscar = false;
-              this.spinner.hide();
-              break;
-            case CEPErrorCode.CEP_MUITO_CURTO:
-              this.buscar = false;
-              this.cepCurto();
-              this.spinner.hide();
-              break;
-          }
-          return EMPTY;
-        })
-      )
-      .subscribe((dados) => {
-        this.buscar = true;
-        this.spinner.hide();
-        setTimeout(() => {
-          this.populaCEPForm(dados, form);
-        }, 100);
-      });
+  buscarCEP(buscacep: any, form: any) {
+    if (buscacep != null && buscacep !== '' && buscacep >= 8) {
+      this.spinner.show();
+      this.cepService.consultaCEP(buscacep).subscribe({
+        next: (dados) => {
+          this.buscar = true;
+          setTimeout(() => {
+            this.populaCEPForm(dados, form);
+          }, 100);
+          this.spinner.hide();
+        },
+        error: (e) => {
+          this.resetaCEPForm(form);
+          this.buscar = false;
+          this.spinner.hide();
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Atenção',
+            detail: 'Erro ao buscar cep!'
+          });
+        }
+      })
+    }
   }
 
-  populaCEPForm(dados, formulario) {
+  populaCEPForm(dados: any, formulario: any) {
     formulario.form.patchValue({
-      logradouro: dados.logradouro.toUpperCase(),
-      localidade: dados.localidade.toUpperCase(),
-      bairro: dados.bairro.toUpperCase(),
-      numero: dados.numero,
-      complemento: dados.complemento.toUpperCase(),
-      uf: dados.uf.toUpperCase(),
-    });
+      logradouro: dados.street,
+      cidade: dados.city,
+      bairro: dados.neighborhood,
+      estado: dados.state
+    })
   }
 
-  resetFormCep(formulario) {
+  resetaCEPForm(formulario: any) {
     formulario.form.patchValue({
       logradouro: null,
-      localidade: null,
+      cidade: null,
       bairro: null,
-      numero: null,
-      complemento: null,
-      uf: null,
-    });
+      estado: null
+    })
+    this.buscar = false;
   }
 
-  cepVazio() {
-    this.messageService.add({
-      severity: 'info',
-      summary: 'Atenção',
-      detail: 'Cep vazio!',
-    });
-  }
-  cepCurto() {
-    this.messageService.add({
-      severity: 'info',
-      summary: 'Atenção',
-      detail: 'Cep muito curto!',
-    });
-  }
-  cepNaoEncontrado() {
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Atenção',
-      detail: 'Cep não encontrado!',
-    });
-  }
-  // TODO toastr lib externa
-  // cepCurto() {
-  //   this.toastr.success('Cep muito curto', '👋 Atenção');
-  // }
 }

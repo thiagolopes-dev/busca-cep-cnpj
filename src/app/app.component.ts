@@ -1,5 +1,6 @@
 import { Component, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { OnlineOfflineService } from './pages/shared/online-offline.service';
 
 
 @Component({
@@ -8,13 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @Output()title = 'App de Consultas';
+  @Output() title = 'App de Consultas';
 
-constructor(
-  private router: Router
- ) { }
+  constructor(
+    private router: Router,
+    private onlineOff: OnlineOfflineService
+  ) { }
 
-hideButtons() {
-  return this.router.url !== '/cep' && this.router.url !== '/cnpj';
-}
+  hideButtons() {
+    return this.router.url !== '/cep' && this.router.url !== '/cnpj';
+  }
 }

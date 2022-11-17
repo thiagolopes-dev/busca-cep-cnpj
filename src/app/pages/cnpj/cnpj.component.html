@@ -1,80 +1,191 @@
 <form #form="ngForm">
-    <i class="pi pi-arrow-left" style="font-size: 2rem" routerLink="/"></i>
-    <div class="grid justify-content-center mt-3">
-
-        <div class="col-12 md:col-6 lg:col-3">
-            <h6>Cnpj</h6>
-            <p-inputMask mask="99.999.999/9999-99" unmask="true" name="cnpj" #cnpj="ngModel" [(ngModel)]="buscarcnpj"
-                placeholder="Digite o CNPJ">
-            </p-inputMask>
-
-
+    <i class="pi pi-arrow-left cursor-pointer" style="font-size: 2rem;" routerLink="/"></i>
+    <div class="grid flex justify-content-center flex-wrap ">
+        <div class="col-8 md:col-6 lg:col-3">
+            <h6>Informe o Cnpj</h6>
+            <p-inputMask type="tel" styleClass="w-full" mask="99.999.999/9999-99" (onBlur)="buscarCNPJ(buscacnpj, form)"
+                minlength="14" name="cnpj" [(ngModel)]="buscacnpj" [unmask]="true" [required]="true"></p-inputMask>
         </div>
-        <div class="col-12 md:col-6 lg:col-3">
-            <p-button styleClass="w-full buttonRounded" label="Buscar" (click)="consultaCNPJ(buscarcnpj, form)">
-            </p-button>
-        </div>
-
-        <div class="grid mt-2" *ngIf="buscar">
-            <div class="col-12 md:col-6 m-2">
-                <span class="p-float-label">
-                    <input class="w-full" type="text" id="razao_social" name="razao_social" pInputText ngModel
-                        disabled="true">
-                    <label for="razao">Razão Social</label>
-                </span>
-            </div>
-
-            <div class="col-12 md:col-6 m-2">
-                <span class="p-float-label">
-                    <input type="text" id="fantasia" name="nome_fantasia" pInputText ngModel disabled="true">
-                    <label for="fantasia">Nome Fantasia</label>
-                </span>
-            </div>
-
-            <div class="col-12 md:col-6 m-2">
-                <span class="p-float-label">
-                    <input class="w-full" type="text" id="logradouro" name="logradouro" pInputText ngModel
-                        disabled="true">
-                    <label for="logradouro">Logradouro</label>
-                </span>
-            </div>
-
-            <div class="col-12 md:col-6 m-2">
-                <span class="p-float-label">
-                    <input class="w-full" type="text" id="numero" name="numero" pInputText ngModel disabled="true">
-                    <label for="numero">Número</label>
-                </span>
-            </div>
-
-            <!-- <div class="col-12 md:col-6 m-2">
-                <span class="p-float-label">
-                    <input type="text" id="complemento" name="complemento" pInputText ngModel disabled="true">
-                    <label for="complemento">Complemento</label>
-                </span>
-            </div> -->
-
-            <div class="col-12 md:col-6 m-2">
-                <span class="p-float-label">
-                    <input type="text" id="municipio" name="municipio" pInputText ngModel disabled="true">
-                    <label for="municipio">Municipio</label>
-                </span>
-            </div>
-
-            <div class="col-12 md:col-6 m-2">
-                <span class="p-float-label">
-                    <input type="text" id="uf" name="uf" pInputText ngModel disabled="true">
-                    <label for="uf">Estado</label>
-                </span>
-            </div>
-
-            <div class="col-12 md:col-6 m-2">
-                <span class="p-float-label">
-                    <input type="text" id="telefone" name="ddd_telefone_1" pInputText ngModel disabled="true">
-                    <label for="telefone">Telefone</label>
-                </span>
-            </div>
+        <div class="col-4 md:col-6 lg:col-3">
+            <h6>&nbsp;</h6>
+            <button pButton pRipple type="button" label="Pesquisar" class="p-button-outlined"
+                (click)="buscarCNPJ(buscacnpj, form)" [disabled]="form.invalid"></button>
         </div>
     </div>
-</form>
 
-<p-toast position="top-right"></p-toast>
+    <div class="grid flex" *ngIf="buscar">
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Razão Social</h6>
+            <input class="w-full" type="text" pInputText ngModel id="razao_social" name="razao_social" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Nome Fantasia</h6>
+            <input class="w-full" type="text" pInputText ngModel id="nome_fantasia" name="nome_fantasia"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Cep</h6>
+            <input class="w-full" type="text" pInputText ngModel id="cep" name="cep" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Logradouro</h6>
+            <input class="w-full" type="text" pInputText ngModel id="logradouro" name="logradouro" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Tipo Logradouro</h6>
+            <input class="w-full" type="text" pInputText ngModel id="descricao_tipo_de_logradouro"
+                name="descricao_tipo_de_logradouro" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Número</h6>
+            <input class="w-full" type="text" pInputText ngModel id="numero" name="numero" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Complemento</h6>
+            <input class="w-full" type="text" pInputText ngModel id="complemento" name="complemento" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Bairro</h6>
+            <input class="w-full" type="text" pInputText ngModel id="bairro" name="bairro" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Munícipio</h6>
+            <input class="w-full" type="text" pInputText ngModel id="municipio" name="municipio" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Código Munícipio IBGE</h6>
+            <input class="w-full" type="text" pInputText ngModel id="codigo_municipio" name="codigo_municipio"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Estado</h6>
+            <input class="w-full" type="text" pInputText ngModel id="uf" name="uf" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>E-mail</h6>
+            <input class="w-full" type="text" pInputText ngModel id="email" name="email" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Código Porte</h6>
+            <input class="w-full" type="text" pInputText ngModel id="codigo_porte" name="codigo_porte" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Porte</h6>
+            <input class="w-full" type="text" pInputText ngModel id="porte" name="porte" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>DDD Fax</h6>
+            <input class="w-full" type="text" pInputText ngModel id="ddd_fax" name="ddd_fax" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Cnae Fiscal</h6>
+            <input class="w-full" type="text" pInputText ngModel id="cnae_fiscal" name="cnae_fiscal" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Capital Social</h6>
+            <input class="w-full" type="text" pInputText ngModel id="capital_social" name="capital_social"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Telefone 1</h6>
+            <input class="w-full" type="text" pInputText ngModel id="ddd_telefone_1" name="ddd_telefone_1"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Telefone 2</h6>
+            <input class="w-full" type="text" pInputText ngModel id="ddd_telefone_2" name="ddd_telefone_2"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Opção pelo Mei</h6>
+            <input class="w-full" type="text" pInputText ngModel id="opcao_pelo_mei" name="opcao_pelo_mei"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Data Opção pelo Mei</h6>
+            <input class="w-full" type="text" pInputText ngModel id="data_opcao_pelo_mei" name="data_opcao_pelo_mei"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Data Exclusão Mei</h6>
+            <input class="w-full" type="text" pInputText ngModel id="data_exclusao_do_mei" name="data_exclusao_do_mei"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Cnae Fiscal Descrição</h6>
+            <input class="w-full" type="text" pInputText ngModel id="cnae_fiscal_descricao" name="cnae_fiscal_descricao"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Descrição Porte</h6>
+            <input class="w-full" type="text" pInputText ngModel id="descricao_porte" name="descricao_porte"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Natureza Jurídica</h6>
+            <input class="w-full" type="text" pInputText ngModel id="natureza_juridica" name="natureza_juridica"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Situação Especial</h6>
+            <input class="w-full" type="text" pInputText ngModel id="situacao_especial" name="situacao_especial"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Opção pelo Simples</h6>
+            <input class="w-full" type="text" pInputText ngModel id="opcao_pelo_simples" name="opcao_pelo_simples"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Data opção Simples</h6>
+            <input class="w-full" type="text" pInputText ngModel id="data_opcao_pelo_simples"
+                name="data_opcao_pelo_simples" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Data Exclusão Simples</h6>
+            <input class="w-full" type="text" pInputText ngModel id="data_exclusao_do_simples"
+                name="data_exclusao_do_simples" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Data Início Atividade</h6>
+            <input class="w-full" type="text" pInputText ngModel id="data_inicio_atividade" name="data_inicio_atividade"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Data situação Cadastral</h6>
+            <input class="w-full" type="text" pInputText ngModel id="data_situacao_cadastral"
+                name="data_situacao_cadastral" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Código Natureza Jurídica</h6>
+            <input class="w-full" type="text" pInputText ngModel id="codigo_natureza_juridica"
+                name="codigo_natureza_juridica" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Identificador Matriz</h6>
+            <input class="w-full" type="text" pInputText ngModel id="identificador_matriz_filial"
+                name="identificador_matriz_filial" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Descrição Identificador Matriz</h6>
+            <input class="w-full" type="text" pInputText ngModel id="descricao_identificador_matriz_filial"
+                name="descricao_identificador_matriz_filial" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Qualificação Responsavel</h6>
+            <input class="w-full" type="text" pInputText ngModel id="qualificacao_do_responsavel"
+                name="qualificacao_do_responsavel" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Situação Cadastral</h6>
+            <input class="w-full" type="text" pInputText ngModel id="descricao_situacao_cadastral"
+                name="descricao_situacao_cadastral" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Motivo Situação</h6>
+            <input class="w-full" type="text" pInputText ngModel id="descricao_motivo_situacao_cadastral"
+                name="descricao_motivo_situacao_cadastral" disabled="true">
+        </div>
+
+    </div>
+</form>
