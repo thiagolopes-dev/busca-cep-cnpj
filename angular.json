@@ -28,7 +28,7 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/themes/lara-dark-indigo/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeflex/primeflex.css",
               "node_modules/ngx-spinner/animations/ball-fussion.css",
@@ -111,7 +111,6 @@
       }
     }
   },
-  "defaultProject": "cnpj-busca",
   "cli": {
     "analytics": false
   }

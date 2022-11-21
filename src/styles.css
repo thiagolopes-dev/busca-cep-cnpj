@@ -20,9 +20,10 @@ h2 {
 h6 {
   font-size: 15px;
   font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
   margin-left: 6px;
   margin-bottom: 2px;
-  color: #6c757d;
+  color: #ffffff;
 }
 
 .toolbar {
@@ -33,7 +34,7 @@ h6 {
   height: 60px;
   display: flex;
   align-items: center;
-  background-color: #010101;
+  background-color: #121212;
   color: white;
   font-weight: 600;
 }

@@ -1,6 +1,6 @@
 <form #form="ngForm">
-    <i class="pi pi-arrow-left cursor-pointer" style="font-size: 2rem;" routerLink="/"></i>
-    <div class="grid flex justify-content-center flex-wrap ">
+    <i class="pi pi-arrow-left cursor-pointer text-white" style="font-size: 2rem;" routerLink="/"></i>
+    <div class="grid flex justify-content-center flex-wrap">
         <div class="col-8 md:col-6 lg:col-3">
             <h6>Informe o Cep</h6>
             <p-inputMask type="tel" styleClass="w-full" mask="99999-999" minlength="8"
@@ -9,7 +9,7 @@
         </div>
         <div class="col-4 md:col-6 lg:col-3">
             <h6>&nbsp;</h6>
-            <button pButton pRipple type="button" label="Pesquisar" class="p-button-outlined"
+            <button pButton pRipple type="button" label="Pesquisar" class="p-button-raised"
                 (click)="buscarCEP(buscacep, form)" [disabled]="form.invalid"></button>
         </div>
     </div>
