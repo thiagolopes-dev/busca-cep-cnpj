@@ -26,6 +26,15 @@ h6 {
   color: #ffffff;
 }
 
+h5 {
+  font-size: 12px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+  margin-left: 6px;
+  margin-bottom: 2px;
+  color: #ffffff;
+}
+
 .toolbar {
   position: absolute;
   top: 0;
@@ -37,4 +46,9 @@ h6 {
   background-color: #121212;
   color: white;
   font-weight: 600;
+}
+
+.p-disabled,
+.p-component:disabled {
+  opacity: 1;
 }
