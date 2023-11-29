@@ -13,7 +13,7 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private onlineOff: OnlineOfflineService
+    private onlineOffline: OnlineOfflineService
   ) { }
 
   hideButtons() {

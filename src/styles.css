@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Ubuntu:wght@300&display=swap');
 
 html {
+  background-color: #ffff;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
-  color: #333;
+  /* color: #333; */
   box-sizing: border-box;
 }
 
@@ -23,7 +24,7 @@ h6 {
   font-weight: 500;
   margin-left: 6px;
   margin-bottom: 2px;
-  color: #ffffff;
+  color: #121212;
 }
 
 h5 {

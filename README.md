@@ -15,5 +15,5 @@ Angular moderna web plataforma developer
 
 ## Autores
 
-- [@thiagolopes.dev](https://www.instagram.com/thiagolopes.dev/)
+- [Thiago Lopes](https://www.instagram.com/thiagolopes.dev/)
 
