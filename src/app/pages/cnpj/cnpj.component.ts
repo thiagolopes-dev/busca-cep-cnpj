@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
+import { CNPJData, QSA } from '../models/cnpj.model';
 import { CnpjService } from './cnpj.service';
 
 @Component({
@@ -11,6 +12,10 @@ import { CnpjService } from './cnpj.service';
 export class CnpjComponent implements OnInit {
   buscacnpj: string = '';
   buscar: boolean = false;
+  cnaesDialog: boolean = false;
+  cnaesSecundarios: any[] = [];
+  qsaData: any[] = [];
+  qsaDialog: boolean = false;
 
   constructor(
     private cnpjService: CnpjService,
@@ -21,11 +26,13 @@ export class CnpjComponent implements OnInit {
   ngOnInit(): void { }
 
   buscarCNPJ(buscacnpj: any, form: any) {
-    if (buscacnpj != null && buscacnpj !== '' && buscacnpj >= 8) {
+    if (buscacnpj != null && buscacnpj !== '' && buscacnpj.length >= 8) {
       this.spinner.show();
       this.cnpjService.consultaCNPJ(buscacnpj).subscribe({
-        next: (dados) => {
+        next: (dados: CNPJData) => {
           this.buscar = true;
+          this.cnaesSecundarios = dados.cnaes_secundarios; // Armazena os CNAEs secundários
+          this.qsaData = dados.qsa; // Armazena os dados de QSA
           setTimeout(() => {
             this.populaCNPJForm(dados, form);
           }, 100);
@@ -38,10 +45,10 @@ export class CnpjComponent implements OnInit {
           this.messageService.add({
             severity: 'error',
             summary: 'Atenção',
-            detail: 'Erro ao buscar cnpj!'
+            detail: 'Erro ao buscar CNPJ!'
           });
         }
-      })
+      });
     }
   }
 
@@ -73,6 +80,8 @@ export class CnpjComponent implements OnInit {
       data_exclusao_do_mei: dados.data_exclusao_do_mei,
       cnae_fiscal_descricao: dados.cnae_fiscal_descricao,
       codigo_municipio_ibge: dados.codigo_municipio_ibge,
+      codigo_municipio: dados.codigo_municipio,
+      pais: dados.pais,
       data_inicio_atividade: dados.data_inicio_atividade,
       data_situacao_especial: dados.data_situacao_especial,
       data_opcao_pelo_simples: dados.data_opcao_pelo_simples,
@@ -102,5 +111,14 @@ export class CnpjComponent implements OnInit {
       nome_fantasia: null,
       porte: null
     })
+  }
+
+  showCnaes() {
+    this.cnaesDialog = true;
+  }
+
+  showQsa(qsa: QSA[]) {
+    this.qsaData = qsa;
+    this.qsaDialog = true;
   }
 }

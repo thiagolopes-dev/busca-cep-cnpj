@@ -49,17 +49,26 @@
             <input class="w-full" type="text" pInputText ngModel id="bairro" name="bairro" disabled="true">
         </div>
         <div class="col-12 md:col-6 lg:col-3">
-            <h6>Munícipio</h6>
-            <input class="w-full" type="text" pInputText ngModel id="municipio" name="municipio" disabled="true">
+            <h6>Código Munícipio IBGE</h6>
+            <input class="w-full" type="text" pInputText ngModel id="codigo_municipio_ibge" name="codigo_municipio_ibge"
+                disabled="true">
         </div>
         <div class="col-12 md:col-6 lg:col-3">
-            <h6>Código Munícipio IBGE</h6>
+            <h6>Código Munícipio</h6>
             <input class="w-full" type="text" pInputText ngModel id="codigo_municipio" name="codigo_municipio"
                 disabled="true">
         </div>
         <div class="col-12 md:col-6 lg:col-3">
+            <h6>Munícipio</h6>
+            <input class="w-full" type="text" pInputText ngModel id="municipio" name="municipio" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
             <h6>Estado</h6>
             <input class="w-full" type="text" pInputText ngModel id="uf" name="uf" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>País</h6>
+            <input class="w-full" type="text" pInputText ngModel id="pais" name="pais" disabled="true">
         </div>
         <div class="col-12 md:col-6 lg:col-3">
             <h6>E-mail</h6>
@@ -80,6 +89,20 @@
         <div class="col-12 md:col-6 lg:col-3">
             <h6>Cnae Fiscal</h6>
             <input class="w-full" type="text" pInputText ngModel id="cnae_fiscal" name="cnae_fiscal" disabled="true">
+        </div>
+
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Cnae Fiscal Descrição</h6>
+            <input class="w-full" type="text" pInputText ngModel id="cnae_fiscal_descricao" name="cnae_fiscal_descricao"
+                disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Cnaes Secundários</h6>
+            <p-button styleClass="w-full" label="Visualizar" (click)="showCnaes()"></p-button>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <h6>Qsa</h6>
+            <p-button styleClass="w-full" label="Visualizar" (click)="showQsa(qsaData)"></p-button>
         </div>
         <div class="col-12 md:col-6 lg:col-3">
             <h6>Capital Social</h6>
@@ -111,11 +134,7 @@
             <input class="w-full" type="text" pInputText ngModel id="data_exclusao_do_mei" name="data_exclusao_do_mei"
                 disabled="true">
         </div>
-        <div class="col-12 md:col-6 lg:col-3">
-            <h6>Cnae Fiscal Descrição</h6>
-            <input class="w-full" type="text" pInputText ngModel id="cnae_fiscal_descricao" name="cnae_fiscal_descricao"
-                disabled="true">
-        </div>
+
         <div class="col-12 md:col-6 lg:col-3">
             <h6>Descrição Porte</h6>
             <input class="w-full" type="text" pInputText ngModel id="descricao_porte" name="descricao_porte"
@@ -189,3 +208,62 @@
 
     </div>
 </form>
+
+<p-dialog header="Cnaes Secundários" [(visible)]="cnaesDialog">
+    <div class="flex flex-wrap">
+        <div class="col-12 flex flex-wrap" *ngFor="let cnae of cnaesSecundarios">
+            <div class="col-12 md:col-6 lg:col-2">
+                <h6>Código</h6>
+                <input class="w-full" type="text" pInputText [ngModel]="cnae.codigo" disabled="true">
+            </div>
+            <div class="col-12 md:col-6 lg:col-10">
+                <h6>Descrição</h6>
+                <input class="w-full" type="text" pInputText [ngModel]="cnae.descricao" disabled="true">
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+<p-dialog header="QSA" [(visible)]="qsaDialog">
+    <div class="grid flex flex-wrap">
+      <div class="flex flex-wrap col-12" *ngFor="let socio of qsaData">
+        <div class="col-12 md:col-6 lg:col-3">
+          <h6>Nome do Sócio</h6>
+          <input class="w-full" type="text" pInputText [ngModel]="socio.nome_socio" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <h6>Qualificação</h6>
+          <input class="w-full" type="text" pInputText [ngModel]="socio.qualificacao_socio" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <h6>CNPJ/CPF do Sócio</h6>
+          <input class="w-full" type="text" pInputText [ngModel]="socio.cnpj_cpf_do_socio" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <h6>Faixa Etária</h6>
+          <input class="w-full" type="text" pInputText [ngModel]="socio.faixa_etaria" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <h6>Data de Entrada</h6>
+          <input class="w-full" type="text" pInputText [ngModel]="socio.data_entrada_sociedade" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <h6>Identificador de Sócio</h6>
+          <input class="w-full" type="text" pInputText [ngModel]="socio.identificador_de_socio" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <h6>CPF Representante Legal</h6>
+          <input class="w-full" type="text" pInputText [ngModel]="socio.cpf_representante_legal" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <h6>Nome Representante Legal</h6>
+          <input class="w-full" type="text" pInputText [ngModel]="socio.nome_representante_legal" disabled="true">
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+          <h6>Qualificação Representante Legal</h6>
+          <input class="w-full" type="text" pInputText [ngModel]="socio.qualificacao_representante_legal" disabled="true">
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+  
